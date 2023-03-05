@@ -1,0 +1,21 @@
+name: default
+
+on:
+  push:
+    branches:
+      - 'master'
+
+job:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SHORT_SHA: ${{ vars.GITHUB_SHA | cut -c1-7 }}
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: build image
+        run: |
+          make build-image TAG_NAME=$SHORT_SHA
+      - name: push image
+        run: docker push TAG_NAME=$SHORT_SHA
+

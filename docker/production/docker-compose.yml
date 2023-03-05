@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    undercontrol-next-app:
+        build:
+            context: ../../
+            dockerfile: docker/production/Dockerfile
+        image: "${imagePrefix}:${BUILD_NUMBER}"
+        ports:
+            - '3000:3000'
