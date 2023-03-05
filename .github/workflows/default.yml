@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SHORT_SHA: ${{ vars.GITHUB_SHA | cut -c1-7 }}
+      SHORT_SHA: ${{ vars.GITHUB_SHA }} | cut -c1-7
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
