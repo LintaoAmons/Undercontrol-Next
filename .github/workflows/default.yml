@@ -8,14 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SHORT_SHA: ${{ vars.GITHUB_SHA }} | cut -c1-7
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
       - name: build image
         run: |
-          echo "$SHORT_SHA"
+          echo ${{ vars.GETHUB_SHA }}
+          SHORT_SHA= ${{ vars.GITHUB_SHA }} | cut -c1-7
           make build-image TAG_NAME="$SHORT_SHA"
       - name: push image
         run: docker push TAG_NAME="$SHORT_SHA"
