@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v3
       - name: build image
         run: |
-          make build-image TAG_NAME=$SHORT_SHA
+          echo "$SHORT_SHA"
+          make build-image TAG_NAME="$SHORT_SHA"
       - name: push image
-        run: docker push TAG_NAME=$SHORT_SHA
+        run: docker push TAG_NAME="$SHORT_SHA"
 
