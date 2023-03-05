@@ -16,5 +16,5 @@ jobs:
           echo "${{ github.sha }}"
           make build-image TAG_NAME="${{ github.sha }}"
       - name: push image
-        run: docker push TAG_NAME="$SHORT_SHA"
+        run: docker push TAG_NAME="${{ github.sha }}"
 
